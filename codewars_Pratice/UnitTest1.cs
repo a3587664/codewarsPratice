@@ -142,7 +142,7 @@ namespace codewars_Pratice
                     }
                 }
                 else
-                {
+                { 
                     numTmp = pyramid[i + 1][tmp] > pyramid[i + 1][tmp + 1]
                         ? pyramid[i + 1][tmp] : pyramid[i + 1][tmp + 1];
                     num2Tmp = pyramid[i + 1][tmp + 1] > pyramid[i + 1][tmp + 2]
