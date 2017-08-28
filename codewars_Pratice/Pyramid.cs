@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace codewars_Pratice
@@ -6,7 +7,7 @@ namespace codewars_Pratice
     [TestClass]
     public class Pyramid
     {
-        [TestMethod]
+        //[TestMethod]
         public void SmallPyramidTest()
         {
             var smallPyramid = new[]
@@ -50,35 +51,16 @@ namespace codewars_Pratice
     {
         public static int LongestSlideDown(int[][] pyramid)
         {
-            int sum = pyramid[0][0], tmp = 0;
-            for (int i = 1; i < pyramid.Length; i++)
+            int sum = 0;
+            for (int i = pyramid.Length - 2; i >= 0; i--)
             {
-                int numTmp = 0, num2Tmp = 0;
-                if (i + 1 >= pyramid.Length)
+                int tmp = 0;
+                for (int j = 0; j < pyramid[i].Length; j++)
                 {
-                    if (pyramid[i][tmp] > pyramid[i][tmp + 1])
-                    {
-                        sum += pyramid[i][tmp];
-                    }
-                    else
-                    {
-                        sum += pyramid[i][tmp + 1];
-                        tmp++;
-                    }
-                }
-                else
-                {
-                    numTmp = pyramid[i + 1][tmp] > pyramid[i + 1][tmp + 1]
-                        ? pyramid[i + 1][tmp] : pyramid[i + 1][tmp + 1];
-                    num2Tmp = pyramid[i + 1][tmp + 1] > pyramid[i + 1][tmp + 2]
-                        ? pyramid[i + 1][tmp + 1]
-                        : pyramid[i + 1][tmp + 2];
-                    sum += pyramid[i][tmp] + numTmp > pyramid[i][tmp + 1] + num2Tmp ? pyramid[i][tmp] : pyramid[i][tmp + 1];
-                    tmp += pyramid[i][tmp] + numTmp > pyramid[i][tmp + 1] + num2Tmp ? 0 : 1;
-                }
-
+                    pyramid[i][j]=Math.Max(pyramid[i][j] + pyramid[i + 1][j], pyramid[i][j] + pyramid[i + 1][j + 1]);
+                }               
             }
-            return sum;
+            return pyramid[0][0];
         }
     }
 }
