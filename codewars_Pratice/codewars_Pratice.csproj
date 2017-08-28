@@ -48,7 +48,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Stop_gninnipS_My_sdrow.cs" />
+    <Compile Include="GoodVsEvil.cs" />
+    <Compile Include="SimpleCase.cs" />
+    <Compile Include="Parentheses.cs" />
+    <Compile Include="ShouldBeWorthless.cs" />
+    <Compile Include="PrimeDecomp.cs" />
+    <Compile Include="StringMerger.cs" />
+    <Compile Include="Pyramid.cs" />
+    <Compile Include="unit_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
