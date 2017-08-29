@@ -59,7 +59,9 @@
     <Compile Include="Sum_Strings_as_Numbers.cs" />
     <Compile Include="Guess_the_Word.cs" />
     <Compile Include="Power_of_two.cs" />
-    <Compile Include="unit_Test.cs" />
+    <Compile Include="Leap_Years.cs" />
+    <Compile Include="Camel_Case.cs" />
+    <Compile Include="WeightSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

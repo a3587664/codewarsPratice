@@ -6,8 +6,8 @@ namespace codewars_Pratice
     [TestClass]
     public class Power_of_two
     {
-        [TestMethod]
-        public void TestMethod1()
+        //[TestMethod]
+        public void Power_of_two_Test()
         {
             Assert.IsTrue(POT.PowerOfTwo(536870912));
         }

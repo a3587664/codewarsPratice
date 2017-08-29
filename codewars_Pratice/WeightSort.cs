@@ -11,13 +11,13 @@ namespace codewars_Pratice
         //[TestMethod]
         public void WeightSort_Test()
         {
-            Assert.AreEqual("1 2 200", unit_Test.orderWeight("1 200 2"));
-           Assert.AreEqual("11 11 2000 10003 22 123 1234000 44444444 9999", unit_Test.orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
+            Assert.AreEqual("1 2 200", WeightSort.orderWeight("1 200 2"));
+           Assert.AreEqual("11 11 2000 10003 22 123 1234000 44444444 9999", WeightSort.orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
         }
 
     }
 
-    public class unit_Test
+    public class WeightSort
     {
 
         public static string orderWeight(string str)
