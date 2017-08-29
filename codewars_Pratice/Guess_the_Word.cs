@@ -7,7 +7,7 @@ namespace codewars_Pratice
     [TestClass]
     public class Guess_the_Word
     {
-        [TestMethod]       
+        //[TestMethod]       
             public void GuesserTest()
             {
             //[TestCase("dog", "car", 0)]

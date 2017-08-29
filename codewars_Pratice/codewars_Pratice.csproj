@@ -58,6 +58,7 @@
     <Compile Include="Pyramid.cs" />
     <Compile Include="Sum_Strings_as_Numbers.cs" />
     <Compile Include="Guess_the_Word.cs" />
+    <Compile Include="Power_of_two.cs" />
     <Compile Include="unit_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
