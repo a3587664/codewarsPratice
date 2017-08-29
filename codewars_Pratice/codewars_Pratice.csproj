@@ -56,6 +56,7 @@
     <Compile Include="PrimeDecomp.cs" />
     <Compile Include="StringMerger.cs" />
     <Compile Include="Pyramid.cs" />
+    <Compile Include="Sum_Strings_as_Numbers.cs" />
     <Compile Include="unit_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -21,7 +21,7 @@ namespace codewars_Pratice
             Assert.AreEqual(PyramidSlideDown.LongestSlideDown(smallPyramid), 23);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void MediumPyramidTest()
         {
             var mediumPyramid = new[]
