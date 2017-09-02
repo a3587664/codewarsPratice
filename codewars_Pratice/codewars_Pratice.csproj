@@ -66,6 +66,7 @@
     <Compile Include="Camel_Case.cs" />
     <Compile Include="Best_travel.cs" />
     <Compile Include="Did_you_mean.cs" />
+    <Compile Include="Counting_Duplicates.cs" />
     <Compile Include="WeightSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

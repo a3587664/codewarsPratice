@@ -8,7 +8,7 @@ namespace codewars_Pratice
     [TestClass]
     public class Best_travel
     {
-        [TestMethod]
+        //[TestMethod]
         public void Best_travel_test()
         {
             Console.WriteLine("****** Basic Tests");

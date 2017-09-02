@@ -8,7 +8,7 @@ namespace codewars_Pratice
     [TestClass]
     public class Did_you_mean
     {
-        [TestMethod]
+        //[TestMethod]
         public void Did_you_mean_Test()
         {
             Kataf kata = new Kataf(new List<string> { "zqdrhpviqslik", "karpscdigdvucfr" });
