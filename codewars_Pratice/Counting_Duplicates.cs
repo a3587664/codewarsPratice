@@ -24,38 +24,39 @@ namespace codewars_Pratice
     {
         public static int DuplicateCount(string str)
         {
-            int tmp = 0,count=0,same=0,i=0;
-            str=str.ToUpper();
-            var List = str.ToList();
-            var copy = List.ToList();
-            bool check = false;
-            while (true)
-            {
-                if (i == List.Count || copy.Count == 0)
-                    break;
-                if (List[i] == copy[count])
-                {
-                    same++;
-                    if (same>1 && !check)
-                    {
-                         tmp++;
-                         check = true;                                        
-                    }
-                    copy.Remove(copy[count]);
-                }
-                else
-                {
-                    count++;
-                }
-                if (count == copy.Count)
-                {
-                    check = false;
-                    count = 0;
-                    same = 0;
-                    i++;                    
-                }
-            }
-            return tmp;
+            return str.ToLower().GroupBy(c => c).Where(a => a.Count() > 1).Count();
+            //int tmp = 0,count=0,same=0,i=0;
+            //str=str.ToUpper();
+            //var List = str.ToList();
+            //var copy = List.ToList();
+            //bool check = false;
+            //while (true)
+            //{
+            //    if (i == List.Count || copy.Count == 0)
+            //        break;
+            //    if (List[i] == copy[count])
+            //    {
+            //        same++;
+            //        if (same>1 && !check)
+            //        {
+            //             tmp++;
+            //             check = true;                                        
+            //        }
+            //        copy.Remove(copy[count]);
+            //    }
+            //    else
+            //    {
+            //        count++;
+            //    }
+            //    if (count == copy.Count)
+            //    {
+            //        check = false;
+            //        count = 0;
+            //        same = 0;
+            //        i++;                    
+            //    }
+            //}
+            //return tmp;
         }
     }
 }
