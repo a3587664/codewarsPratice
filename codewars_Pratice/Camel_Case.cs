@@ -8,7 +8,7 @@ namespace codewars_Pratice
     [TestClass]
     public class Camel_Case
     {
-        [TestMethod]
+        //[TestMethod]
         public void Camel_Case_Test()
         {
             Assert.AreEqual("theStealthWarrior", Camel_Case_Kata.ToCamelCase("the_stealth_warrior"), "Kata.ToCamelCase('the_stealth_warrior') did not return correct value");

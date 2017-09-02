@@ -6,7 +6,7 @@ namespace codewars_Pratice
     [TestClass]
     public class Leap_Years
     {
-        [TestMethod]
+        //[TestMethod]
         public void Leap_Years_Test()
         {
             Assert.AreEqual(false, LeapYears.IsLeapYear(1234), "Year 1234");
