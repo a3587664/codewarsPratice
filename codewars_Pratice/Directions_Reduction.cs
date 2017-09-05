@@ -19,7 +19,7 @@ namespace codewars_Pratice
         [TestMethod]
         public void Directions_Reduction_Test2()
         {
-            string[] a = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };
+            string[] a = new string[] { "NORTH", "WEST", "SOUTH", "EAST" }; 
             string[] b = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };
 
             CollectionAssert.AreEqual(b, DirReduction.dirReduc(a));
