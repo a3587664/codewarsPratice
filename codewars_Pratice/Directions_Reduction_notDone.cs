@@ -8,12 +8,12 @@ namespace codewars_Pratice
     [TestClass]
     public class Directions_Reduction
     {
-        //[TestMethod]
+        [TestMethod]
         public void Directions_Reduction_Test1() 
         {
-            string[] a =  { "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" };
-            string[] b =  { "WEST" };
-            Assert.AreEqual(b, DirReduction.dirReduc(a));
+            string[] a = new string[] { "NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST" };
+            string[] b = new string[] { "WEST" };
+            CollectionAssert.AreEqual(b, DirReduction.dirReduc(a));
         }
 
         [TestMethod]
@@ -27,21 +27,17 @@ namespace codewars_Pratice
 
         public class DirReduction
         {
-            
             public static string[] dirReduc(String[] arr)
             {
-                for (int j = 0; j < arr.Length; j++)
-                {
-                    Console.WriteLine(arr[j]);
-                }
+                Log(arr);
                 int i = 0;
                 var arrList = arr.ToList();
-                while (i< arrList.Count-1 && arrList.Count>1)
+                while (i < arrList.Count - 1 && arrList.Count > 1)
                 {
                     switch (arrList[i].ToUpper())
                     {
                         case "EAST":
-                            if (i != 0 && arrList[i - 1 ]== "WEST")
+                            if (i != 0 && arrList[i - 1] == "WEST")
                             {
                                 i--;
                                 arrList.Remove(arrList[i]);
@@ -110,13 +106,16 @@ namespace codewars_Pratice
                             break;
                     }
                 }
-                Console.WriteLine("/n");
-                for (int j = 0; j < arrList.Count; j++)
-                {
-                    Console.WriteLine(arrList[j]);
-                }
-
+                Log(arrList.ToArray());
                 return arrList.ToArray();
+            }
+
+            private static void Log(string[] arr)
+            {
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    Console.WriteLine(arr[j]);
+                }
             }
         }
     }
