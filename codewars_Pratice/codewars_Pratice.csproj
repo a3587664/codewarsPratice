@@ -67,7 +67,8 @@
     <Compile Include="Best_travel.cs" />
     <Compile Include="Did_you_mean.cs" />
     <Compile Include="Counting_Duplicates.cs" />
-    <Compile Include="Directions_Reduction.cs" />
+    <Compile Include="Directions_Reduction_notDone.cs" />
+    <Compile Include="Connect_Four.cs" />
     <Compile Include="WeightSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
