@@ -11,7 +11,7 @@ namespace codewars_Pratice
         public void DuplicatesTests()
         {
             Assert.AreEqual(7, Duplicates.DuplicateCount("190187186180188182196202187190196180187183195181178176171172"));
-            Assert.AreEqual(0, Duplicates.DuplicateCount("abcde"));
+            Assert.AreEqual(0, Duplicates.DuplicateCount("abcde")); 
             Assert.AreEqual(2, Duplicates.DuplicateCount("aabbcde"));
             Assert.AreEqual(2, Duplicates.DuplicateCount("aabBcde"), "should ignore case");
             Assert.AreEqual(1, Duplicates.DuplicateCount("Indivisibility"));

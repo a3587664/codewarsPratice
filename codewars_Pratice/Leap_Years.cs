@@ -13,7 +13,7 @@ namespace codewars_Pratice
             Assert.AreEqual(true, LeapYears.IsLeapYear(1984), "Year 1984");
             Assert.AreEqual(true, LeapYears.IsLeapYear(2000), "Year 2000");
             Assert.AreEqual(false, LeapYears.IsLeapYear(2010), "Year 2010");
-            Assert.AreEqual(false, LeapYears.IsLeapYear(2013), "Year 2013");
+            Assert.AreEqual(false, LeapYears.IsLeapYear(2013), "Year 2013"); 
 
         }
     }
