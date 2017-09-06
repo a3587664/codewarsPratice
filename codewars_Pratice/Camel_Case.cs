@@ -18,7 +18,7 @@ namespace codewars_Pratice
 
     public class Camel_Case_Kata
     {
-        public static string ToCamelCase(string str)
+        public static string ToCamelCase(string str) 
         {
             List<string> strList = str.Select(c => c.ToString()).ToList();
             for (int i = 1; i < strList.Count; i++)

@@ -9,7 +9,7 @@ namespace codewars_Pratice
     public class Best_travel
     {
         //[TestMethod]
-        public void Best_travel_test()
+        public void Best_travel_test() 
         {
             Console.WriteLine("****** Basic Tests");
             List<int> ts = new List<int> { 50, 55, 56, 57, 58 };
