@@ -22,19 +22,21 @@ namespace codewars_Pratice
         {
             public static string Nico(string key, string message)
             {
-                int firstNum = message.Length % key.Length == 0
-                    ? message.Length / key.Length
-                    : message.Length / key.Length + 1;
+                int width = key.Length;
 
+                int height = message.Length % width == 0
+                    ? message.Length / width
+                    : message.Length / width + 1;
+                
                 int count = 0;
 
-                string[,] arrayMessage = new string[firstNum, key.Length];
+                string[,] arrayMessage = new string[height, width];
 
-                for (int i = 0; i < firstNum; i++)
+                for (int i = 0; i < height; i++)
                 {
-                    for (int j = 0; j < key.Length; j++)
+                    for (int j = 0; j < width; j++)
                     {
-                        if (i * key.Length + j < message.Length)
+                        if (i * width + j < message.Length)
                         {
                             arrayMessage[i, j] = message[count].ToString();
                         }
@@ -49,13 +51,13 @@ namespace codewars_Pratice
                 Array.Sort(keyArray, StringComparer.InvariantCulture);
                 int keyCount = 0,ansArrayCount=0;
                 count = 0;
-                string[,] anserArray = new string[firstNum, key.Length];
-                while (count < key.Length)
+                string[,] anserArray = new string[height, width];
+                while (count < width)
                 {
                     if (keyArray[count] == key[keyCount])
                     {
                         count++;
-                        for (int i = 0; i < firstNum; i++)
+                        for (int i = 0; i < height; i++)
                         {
                             anserArray[i, ansArrayCount] = arrayMessage[i, keyCount];
                         }
