@@ -29,6 +29,36 @@ namespace codewars_Pratice
             Assert.AreEqual(100, Score("X- 52 52 -7 52 X- 52 52 7- X52"));
         }
 
+        [TestMethod]
+        public void Bowling_SpareAndFinalX_shouldBe178()
+        {
+            Assert.AreEqual(178, Score("5/ 8/ 6/ 7/ 7/ 9/ 5/ 8/ 9/ 9/X"));
+        }
+
+        [TestMethod]
+        public void Bowling_AllMiss_shouldBe73()
+        {
+            Assert.AreEqual(73, Score("5- 8- 6- 7- 7- 9- 5- 8- 9- 9--"));
+        }
+
+        [TestMethod]
+        public void Bowling_STRIKE_SPARE_GAME_shouldBe200()
+        {
+            Assert.AreEqual(200, Score("X- 9/ X- 7/ X- 2/ X- 5/ X- 1/X"));
+        }
+
+        [TestMethod]
+        public void Bowling_AllHaveAndLastIsSpare_shouldBe115()
+        {
+            Assert.AreEqual(115, Score("62 8- 51 X- 72 X- 6/ 32 45 5/8"));
+        }
+
+        [TestMethod]
+        public void Bowling_AllHaveAndLastIs2X_shouldBe125()
+        {
+            Assert.AreEqual(125, Score("62 8- 51 X- 72 X- 6/ 32 45 XX8"));
+        }
+
         public int Score(string score)
         {
             var scoreArray = score.ToList();
@@ -45,12 +75,22 @@ namespace codewars_Pratice
                 if (count < 27 && scoreArray[count].ToString() == "X")
                 {
                     totalScore += 10;
-                    totalScore += NextRoundIsX(scoreList, count, scoreArray);
-                    totalScore += Next2RoundIsX(scoreList, count, scoreArray);
+                    totalScore += CountXScore(scoreList, count, scoreArray);
+                }
+                else if (count < 27 && scoreArray[count].ToString() == "/")
+                {
+                    totalScore += 10 + ConVertToNum(scoreArray[count + 2]) - ConVertToNum(scoreArray[count - 1]);
                 }
                 else
                 {
-                    totalScore += ConVertToNum(scoreArray[count]);
+                    if (scoreArray[count] == '/')
+                    {
+                        totalScore += 10 - ConVertToNum(scoreArray[count - 1]);
+                    }
+                    else
+                    {
+                        totalScore += ConVertToNum(scoreArray[count]);
+                    }
                 }
                 count++;
             }
@@ -65,6 +105,7 @@ namespace codewars_Pratice
                 {
                     return 10;
                 }
+
                 return ConVertToNum(scoreArray[count + 4]);
             }
             if (scoreList[9].Contains("X"))
@@ -74,15 +115,21 @@ namespace codewars_Pratice
             return ConVertToNum(scoreArray[count + 4]);
         }
 
-        private int NextRoundIsX(string[] scoreList, int count, List<char> scoreArray)
+        private int CountXScore(string[] scoreList, int count, List<char> scoreArray)
         {
             if (count / 3 + 1 < 10)
             {
-                if (scoreList[count / 3 + 1].Contains("X"))
+                if (scoreArray[count + 4] == '/')
                 {
                     return 10;
                 }
-                return ConVertToNum(scoreArray[count + 3]);
+
+                if (scoreList[count / 3 + 1].Contains("X"))
+                {
+                    return 10 + Next2RoundIsX(scoreList, count, scoreArray);
+                }
+
+                return ConVertToNum(scoreArray[count + 3]) + ConVertToNum(scoreArray[count + 4]);
             }
             if (scoreList[9].Contains("X"))
             {
@@ -102,6 +149,7 @@ namespace codewars_Pratice
             {
                 return 0;
             }
+
             return Int32.Parse(parm.ToString());
         }
     }

@@ -8,7 +8,7 @@ namespace codewars_Pratice
     [TestClass]
     public class Basic_Nico_variation
     {
-        [TestMethod]
+        //[TestMethod]
         public void Basic_Nico_variation_Test()
         {
             Assert.AreEqual("cseerntiofarmit on  ", Kata.Nico("crazy", "secretinformation"));
