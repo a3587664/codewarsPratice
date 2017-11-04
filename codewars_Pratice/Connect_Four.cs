@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 namespace codewars_Pratice
 {
-    [TestClass]
+    //[TestClass]
     public class Connect_Four
     {
         [TestMethod]

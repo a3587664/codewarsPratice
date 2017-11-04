@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace codewars_Pratice
 {
-    [TestClass]
+    //[TestClass]
     public class Directions_Reduction
     {
         [TestMethod]

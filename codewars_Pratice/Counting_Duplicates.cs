@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace codewars_Pratice
 {
-    [TestClass]
+    //[TestClass]
     public class Counting_Duplicates
     {
         [TestMethod]

@@ -51,6 +51,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bowling.cs" />
     <Compile Include="Stop_gninnipS_My_sdrow.cs" />
     <Compile Include="GoodVsEvil.cs" />
     <Compile Include="SimpleCase.cs" />
