@@ -14,7 +14,6 @@ namespace codewars_Pratice
         public void Bowling_AllX_shouldBe300()
         {
             Assert.AreEqual(300, Score("X- X- X- X- X- X- X- X- X- XXX"));
-            Assert.AreEqual(70, Score("52 52 52 52 52 52 52 52 52 52-"));
         }
 
         [TestMethod]
@@ -48,44 +47,52 @@ namespace codewars_Pratice
         }
 
         [TestMethod]
-        public void Bowling_AllHaveAndLastIsSpare_shouldBe115()
+        public void Bowling_HaveXAndLastIsSpare_shouldBe115()
         {
             Assert.AreEqual(115, Score("62 8- 51 X- 72 X- 6/ 32 45 5/8"));
         }
 
         [TestMethod]
-        public void Bowling_AllHaveAndLastIs2X_shouldBe125()
+        public void Bowling_2XClose_shouldBe132()
         {
-            Assert.AreEqual(125, Score("62 8- 51 X- 72 X- 6/ 32 45 XX8"));
+            Assert.AreEqual(132, Score("62 8- 51 X- X- 72 6/ 32 45 XX8"));
+        }
+
+        [TestMethod]
+        public void Bowling_2SpareClose_shouldBe118()
+        {
+            Assert.AreEqual(118, Score("62 8- 51 2/ 3/ 72 X- 32 45 XX8"));
         }
 
         public int Score(string score)
         {
             var scoreArray = score.ToList();
-            var scoreList = score.Split(' ');
             int totalScore = 0, count = 0;
+
             while (count < scoreArray.Count)
             {
-                if (scoreArray[count].ToString() == " ")
+                int lastBall = count - 1, nextRoundFirstBall = count + 2, round = count / 3 + 1;
+
+                if (scoreArray[count].ToString() == " " || scoreArray[count].ToString() == "-")
                 {
                     count++;
                     continue;
                 }
 
-                if (count < 27 && scoreArray[count].ToString() == "X")
+                if (round < 10 && scoreArray[count].ToString() == "X")
                 {
                     totalScore += 10;
-                    totalScore += CountXScore(scoreList, count, scoreArray);
+                    totalScore += CountXScore(count, scoreArray);
                 }
-                else if (count < 27 && scoreArray[count].ToString() == "/")
+                else if (round < 10 && scoreArray[count].ToString() == "/")
                 {
-                    totalScore += 10 + ConVertToNum(scoreArray[count + 2]) - ConVertToNum(scoreArray[count - 1]);
+                    totalScore += 10 + ConVertToNum(scoreArray[nextRoundFirstBall]) - ConVertToNum(scoreArray[lastBall]);
                 }
                 else
                 {
                     if (scoreArray[count] == '/')
                     {
-                        totalScore += 10 - ConVertToNum(scoreArray[count - 1]);
+                        totalScore += 10 - ConVertToNum(scoreArray[lastBall]);
                     }
                     else
                     {
@@ -97,45 +104,30 @@ namespace codewars_Pratice
             return totalScore;
         }
 
-        private int Next2RoundIsX(string[] scoreList, int count, List<char> scoreArray)
+        private int CountXScore(int count, List<char> scoreArray)
         {
-            if (count / 3 + 2 < 10)
-            {
-                if (scoreList[count / 3 + 2].Contains("X"))
-                {
-                    return 10;
-                }
+            int nextRoundFirstBall = count + 3;
+            int nextRoundSecondBall = count + 4;
+            int nextTwoRoundFirstBall = count + 6;
+            int round = count / 3 + 1;
 
-                return ConVertToNum(scoreArray[count + 4]);
-            }
-            if (scoreList[9].Contains("X"))
+            if (scoreArray[nextRoundSecondBall] == '/')
             {
                 return 10;
             }
-            return ConVertToNum(scoreArray[count + 4]);
-        }
 
-        private int CountXScore(string[] scoreList, int count, List<char> scoreArray)
-        {
-            if (count / 3 + 1 < 10)
+            if (scoreArray[nextRoundFirstBall] == 'X')
             {
-                if (scoreArray[count + 4] == '/')
+                if (round == 9)
                 {
-                    return 10;
+                    return 10 + ConVertToNum(scoreArray[nextRoundSecondBall]);
                 }
 
-                if (scoreList[count / 3 + 1].Contains("X"))
-                {
-                    return 10 + Next2RoundIsX(scoreList, count, scoreArray);
-                }
+                return 10 + ConVertToNum(scoreArray[nextTwoRoundFirstBall]);
+            }
 
-                return ConVertToNum(scoreArray[count + 3]) + ConVertToNum(scoreArray[count + 4]);
-            }
-            if (scoreList[9].Contains("X"))
-            {
-                return 10;
-            }
-            return ConVertToNum(scoreArray[count + 3]);
+            return ConVertToNum(scoreArray[nextRoundFirstBall]) + ConVertToNum(scoreArray[nextRoundSecondBall]);
+
         }
 
 
@@ -145,11 +137,10 @@ namespace codewars_Pratice
             {
                 return 10;
             }
-            else if (parm == '-')
+            if (parm == '-')
             {
                 return 0;
             }
-
             return Int32.Parse(parm.ToString());
         }
     }
