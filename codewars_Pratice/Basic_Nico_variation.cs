@@ -23,54 +23,35 @@ namespace codewars_Pratice
             public static string Nico(string key, string message)
             {
                 int width = key.Length;
-
-                int height = message.Length % width == 0
-                    ? message.Length / width
-                    : message.Length / width + 1;
-                
+                int height = (int)Math.Ceiling((decimal)message.Length / width);
                 int count = 0;
 
-                string[,] arrayMessage = new string[height, width];
+                var arrayMessage = new string[height, width];
+
+                message = message.PadRight(height * width, ' ');
 
                 for (int i = 0; i < height; i++)
                 {
                     for (int j = 0; j < width; j++)
                     {
-                        if (i * width + j < message.Length)
-                        {
-                            arrayMessage[i, j] = message[count].ToString();
-                        }
-                        else
-                        {
-                            arrayMessage[i, j] = " ";
-                        }
+                        arrayMessage[i, j] = message[count].ToString();
                         count++;
                     }
                 }
-                var keyArray = key.ToArray();
-                Array.Sort(keyArray, StringComparer.InvariantCulture);
-                int keyCount = 0,ansArrayCount=0;
-                count = 0;
-                string[,] anserArray = new string[height, width];
-                while (count < width)
+
+                var sortKey = key.OrderBy(x => x).ToArray();
+
+                var output = new string[height, width];
+
+                for (int i = 0; i < height; i++)
                 {
-                    if (keyArray[count] == key[keyCount])
+                    for (int j = 0; j < width; j++)
                     {
-                        count++;
-                        for (int i = 0; i < height; i++)
-                        {
-                            anserArray[i, ansArrayCount] = arrayMessage[i, keyCount];
-                        }
-                        ansArrayCount++;
-                        keyCount = 0;
-                    }
-                    else
-                    {
-                        keyCount++;
+                        output[i, j] = arrayMessage[i, Array.IndexOf(key.ToArray(), sortKey[j])];
                     }
                 }
-                List<string> ansList = anserArray.OfType<string>().ToList();
-                return string.Join("", ansList);
+
+                return string.Join("", output.Cast<string>());
             }
         }
     }
