@@ -57,7 +57,7 @@ namespace codewars_Pratice
             public static bool validBraces(string braces)
             {
                 int bracesIndex = 0;
-                while (bracesIndex < braces.Length -1)
+                while (bracesIndex < braces.Length - 1)
                 {
                     RemovePairBraces(ref braces, ref bracesIndex);
                 }
@@ -66,39 +66,12 @@ namespace codewars_Pratice
 
             private static void RemovePairBraces(ref string braces, ref int bracesIndex)
             {
-                if (braces[bracesIndex] == '(')
-                    if (braces[bracesIndex + 1] == ')')
-                    {
-                        braces = braces.Remove(bracesIndex, 2);
-                        bracesIndex = 0;
-                    }
-                    else
-                    {
-                        bracesIndex++;
-                    }
-                else if (braces[bracesIndex] == '[')
+                if (braces[bracesIndex] == '(' && braces[bracesIndex + 1] == ')' ||
+                    braces[bracesIndex] == '[' && braces[bracesIndex + 1] == ']' ||
+                    braces[bracesIndex] == '{' && braces[bracesIndex + 1] == '}')
                 {
-                    if (braces[bracesIndex + 1] == ']')
-                    {
-                        braces = braces.Remove(bracesIndex, 2);
-                        bracesIndex = 0;
-                    }
-                    else
-                    {
-                        bracesIndex++;
-                    }
-                }
-                else if (braces[bracesIndex] == '{')
-                {
-                    if (braces[bracesIndex + 1] == '}')
-                    {
-                        braces = braces.Remove(bracesIndex, 2);
-                        bracesIndex = 0;
-                    }
-                    else
-                    {
-                        bracesIndex++;
-                    }
+                    braces = braces.Remove(bracesIndex, 2);
+                    bracesIndex = 0;
                 }
                 else
                 {
