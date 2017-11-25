@@ -59,47 +59,51 @@ namespace codewars_Pratice
                 int bracesIndex = 0;
                 while (bracesIndex < braces.Length -1)
                 {
-                    switch (braces[bracesIndex])
-                    {
-                        case '(':
-                            if (braces[bracesIndex + 1] == ')')
-                            {
-                                braces = braces.Remove(bracesIndex, 2);
-                                bracesIndex = 0;
-                            }
-                            else
-                            {
-                                bracesIndex++;
-                            }
-                            break;
-                        case '[':
-                            if (braces[bracesIndex + 1] == ']')
-                            {
-                                braces = braces.Remove(bracesIndex, 2);
-                                bracesIndex = 0;
-                            }
-                            else
-                            {
-                                bracesIndex++;
-                            }
-                            break;
-                        case '{':
-                            if (braces[bracesIndex + 1] == '}')
-                            {
-                                braces = braces.Remove(bracesIndex, 2);
-                                bracesIndex = 0;
-                            }
-                            else
-                            {
-                                bracesIndex++;
-                            }
-                            break;
-                        default:
-                            bracesIndex++;
-                            break;
-                    }
+                    RemovePairBraces(ref braces, ref bracesIndex);
                 }
                 return braces == String.Empty;
+            }
+
+            private static void RemovePairBraces(ref string braces, ref int bracesIndex)
+            {
+                if (braces[bracesIndex] == '(')
+                    if (braces[bracesIndex + 1] == ')')
+                    {
+                        braces = braces.Remove(bracesIndex, 2);
+                        bracesIndex = 0;
+                    }
+                    else
+                    {
+                        bracesIndex++;
+                    }
+                else if (braces[bracesIndex] == '[')
+                {
+                    if (braces[bracesIndex + 1] == ']')
+                    {
+                        braces = braces.Remove(bracesIndex, 2);
+                        bracesIndex = 0;
+                    }
+                    else
+                    {
+                        bracesIndex++;
+                    }
+                }
+                else if (braces[bracesIndex] == '{')
+                {
+                    if (braces[bracesIndex + 1] == '}')
+                    {
+                        braces = braces.Remove(bracesIndex, 2);
+                        bracesIndex = 0;
+                    }
+                    else
+                    {
+                        bracesIndex++;
+                    }
+                }
+                else
+                {
+                    bracesIndex++;
+                }
             }
         }
     }
