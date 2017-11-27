@@ -71,7 +71,9 @@ namespace codewars_Pratice
 
             while (count < scoreArray.Count)
             {
-                int lastBall = count - 1, nextRoundFirstBall = count + 2, round = count / 3 + 1;
+                int lastBall = count - 1, 
+                    nextRoundFirstBall = count + 2, 
+                    round = count / 3 + 1;
 
                 if (scoreArray[count].ToString() == " " || scoreArray[count].ToString() == "-")
                 {

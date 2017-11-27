@@ -21,8 +21,37 @@ namespace codewars_Pratice
         {
             public static string Nico(string key, string message)
             {
+
+                var encryptMessage = SetEncryptMessage(message, key);
+
+                var output = Encrypt(message, key, encryptMessage);
+
+                return string.Join("", output.Cast<string>());
+            }
+
+            private static string[,] Encrypt(string message, string key, string[,] EncryptMessage)
+            {
                 int width = key.Length;
                 int height = (int)Math.Ceiling((decimal)message.Length / width);
+                var output = new string[height, width];
+                var sortKey = key.OrderBy(x => x).ToArray();
+
+                for (int i = 0; i < height; i++)
+                {
+                    for (int j = 0; j < width; j++)
+                    {
+                        output[i, j] = EncryptMessage[i, Array.IndexOf(key.ToArray(), sortKey[j])];
+                    }
+                }
+
+                return output;
+            }
+
+            private static string[,] SetEncryptMessage(string message, string key)
+            {
+                int width = key.Length;
+                int height = (int)Math.Ceiling((decimal)message.Length / width);
+
                 int count = 0;
 
                 var arrayMessage = new string[height, width];
@@ -38,19 +67,7 @@ namespace codewars_Pratice
                     }
                 }
 
-                var sortKey = key.OrderBy(x => x).ToArray();
-
-                var output = new string[height, width];
-
-                for (int i = 0; i < height; i++)
-                {
-                    for (int j = 0; j < width; j++)
-                    {
-                        output[i, j] = arrayMessage[i, Array.IndexOf(key.ToArray(), sortKey[j])];
-                    }
-                }
-
-                return string.Join("", output.Cast<string>());
+                return arrayMessage;
             }
         }
     }

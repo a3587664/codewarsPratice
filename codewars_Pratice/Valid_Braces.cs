@@ -49,7 +49,7 @@ namespace codewars_Pratice
         [TestMethod]
         public void Kata7()
         {
-            Assert.AreEqual(false, Brace.validBraces("([{])}"));
+            Assert.AreEqual(false, Brace.validBraces("([{])}}"));
         }
 
         public class Brace
@@ -66,9 +66,10 @@ namespace codewars_Pratice
 
             private static void RemovePairBraces(ref string braces, ref int bracesIndex)
             {
-                if (braces[bracesIndex] == '(' && braces[bracesIndex + 1] == ')' ||
-                    braces[bracesIndex] == '[' && braces[bracesIndex + 1] == ']' ||
-                    braces[bracesIndex] == '{' && braces[bracesIndex + 1] == '}')
+                var nextIndex = bracesIndex + 1;
+                if (braces[bracesIndex] == '(' && braces[nextIndex] == ')' ||
+                    braces[bracesIndex] == '[' && braces[nextIndex] == ']' ||
+                    braces[bracesIndex] == '{' && braces[nextIndex] == '}')
                 {
                     braces = braces.Remove(bracesIndex, 2);
                     bracesIndex = 0;
