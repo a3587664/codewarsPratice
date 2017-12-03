@@ -69,17 +69,19 @@ namespace codewars_Pratice
             public static int CalculateScore(List<string[]> reels, int[] spins)
             {
                 string sameItem = Item.GetSameItem(reels, spins);
-
+                if (sameItem == null)
+                {
+                    return 0;
+                }
                 if (Item.IsAllSameItems(reels, spins))
                 {
                     return Score.GetAllSameItemScore(sameItem);
                 }
-                if (Item.IsTwoSameItems(reels, spins))
+                else
                 {
                     string diffItem = Item.GetDiffItem(reels,spins);
                     return Score.GetTwoSameItemScore(sameItem,diffItem);
                 }
-                return 0;
             }
         }
     }
@@ -92,7 +94,15 @@ namespace codewars_Pratice
             var secondItem = reels[1][spins[1]];
             var thirdItem = reels[2][spins[2]];
 
-            return firstItem == secondItem ? firstItem : thirdItem;
+            if (firstItem == secondItem || firstItem == thirdItem)
+            {
+                return firstItem;
+            }
+            if (secondItem == thirdItem)
+            {
+                return secondItem;
+            }
+            return null;
         }
 
         public static string GetDiffItem(List<string[]> reels, int[] spins)
@@ -110,13 +120,6 @@ namespace codewars_Pratice
                 return secondItem;
             }
             return firstItem;
-        }
-
-        public static bool IsTwoSameItems(List<string[]> reels, int[] spins)
-        {
-            return reels[0][spins[0]] == reels[1][spins[1]] || 
-                   reels[0][spins[0]] == reels[2][spins[2]] || 
-                   reels[1][spins[1]] == reels[2][spins[2]];
         }
 
         public static bool IsAllSameItems(List<string[]> reels, int[] spins)
