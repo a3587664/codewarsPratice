@@ -1,36 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace codewars_Pratice
 {
-    [TestClass]
+    [TestFixture]
     public class Fruit_Machine
     {
+        private List<string[]> reels = new List<string[]>();
 
-        [TestMethod]
+        [SetUp]
+        public void Set()
+        {
+            string[] reel = { "Wild", "Star", "Bell", "Shell", "Seven", "Cherry", "Bar", "King", "Queen", "Jack" };
+            reels = new List<string[]> { reel, reel, reel };
+        }
+
+        [Test]
         public void Three_Wild()
         {
-            string[] reel1 = { "Wild", "Star", "Bell", "Shell", "Seven", "Cherry", "Bar", "King", "Queen", "Jack" };
-            string[] reel2 = { "Wild", "Star", "Bell", "Shell", "Seven", "Cherry", "Bar", "King", "Queen", "Jack" };
-            string[] reel3 = { "Wild", "Star", "Bell", "Shell", "Seven", "Cherry", "Bar", "King", "Queen", "Jack" };
-            var reels = new List<string[]> { reel1, reel2, reel3 };
             int[] spins = { 0, 0, 0 };
             Assert.AreEqual(100, Slot.CalculateScore(reels, spins));
         }
 
-        [TestMethod]
+        [Test]
         public void Three_Diff()
         {
-            string[] reel1 = { "Wild", "Star", "Bell", "Shell", "Seven", "Cherry", "Bar", "King", "Queen", "Jack" };
-            string[] reel2 = { "Wild", "Star", "Bell", "Shell", "Seven", "Cherry", "Bar", "King", "Queen", "Jack" };
-            string[] reel3 = { "Wild", "Star", "Bell", "Shell", "Seven", "Cherry", "Bar", "King", "Queen", "Jack" };
-            List<string[]> reels = new List<string[]> { reel1, reel2, reel3 };
             int[] spins = { 5, 4, 3 };
             Assert.AreEqual(0, Slot.CalculateScore(reels, spins));
+        }
+
+        [Test]
+        public void Three_SameItems()
+        {
+            int[] spins = { 1, 1, 1 };
+            Assert.AreEqual(90, Slot.CalculateScore(reels, spins));
         }
 
         public class Slot
@@ -39,7 +45,8 @@ namespace codewars_Pratice
             {
                 if (IsAllSame(reels, spins))
                 {
-                    return GetAllSameItemScore(reels[0][spins[0]]);
+                    string sameItem = reels[0][spins[0]];
+                    return GetAllSameItemScore(sameItem);
                 }
                 return 0;
             }
