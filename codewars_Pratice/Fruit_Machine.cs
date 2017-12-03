@@ -46,6 +46,13 @@ namespace codewars_Pratice
             Assert.AreEqual(10, Slot.CalculateScore(_reels, spins));
         }
 
+        [Test]
+        public void Two_SameItems_One_Diff()
+        {
+            int[] spins = { 0, 1, 1 };
+            Assert.AreEqual(9, Slot.CalculateScore(_reels, spins));
+        }
+
         public class Slot
         {
             public static int CalculateScore(List<string[]> reels, int[] spins)
@@ -77,7 +84,7 @@ namespace codewars_Pratice
 
         public static bool IsTwoSameItems(List<string[]> reels, int[] spins)
         {
-            return reels[0][spins[0]] == reels[1][spins[1]] || reels[0][spins[0]] == reels[2][spins[2]];
+            return reels[0][spins[0]] == reels[1][spins[1]] || reels[0][spins[0]] == reels[2][spins[2]] || reels[1][spins[1]] == reels[2][spins[2]];
         }
 
         public static bool IsAllSameItems(List<string[]> reels, int[] spins)
