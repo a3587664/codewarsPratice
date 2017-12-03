@@ -76,27 +76,10 @@ namespace codewars_Pratice
                 }
                 if (Item.IsTwoSameItems(reels, spins))
                 {
-                    string diffItem = GetDiffItem(reels,spins);
+                    string diffItem = Item.GetDiffItem(reels,spins);
                     return Score.GetTwoSameItemScore(sameItem,diffItem);
                 }
                 return 0;
-            }
-
-            private static string GetDiffItem(List<string[]> reels, int[] spins)
-            {
-                var firstItem = reels[0][spins[0]];
-                var secondItem = reels[1][spins[1]];
-                var thirdItem = reels[2][spins[2]];
-
-                if (firstItem == secondItem)
-                {
-                    return thirdItem;
-                }
-                if(firstItem == thirdItem)
-                {
-                    return secondItem;
-                }
-                    return firstItem;
             }
         }
     }
@@ -110,6 +93,23 @@ namespace codewars_Pratice
             var thirdItem = reels[2][spins[2]];
 
             return firstItem == secondItem ? firstItem : thirdItem;
+        }
+
+        public static string GetDiffItem(List<string[]> reels, int[] spins)
+        {
+            var firstItem = reels[0][spins[0]];
+            var secondItem = reels[1][spins[1]];
+            var thirdItem = reels[2][spins[2]];
+
+            if (firstItem == secondItem)
+            {
+                return thirdItem;
+            }
+            if (firstItem == thirdItem)
+            {
+                return secondItem;
+            }
+            return firstItem;
         }
 
         public static bool IsTwoSameItems(List<string[]> reels, int[] spins)
@@ -130,71 +130,38 @@ namespace codewars_Pratice
     {
         public static int GetAllSameItemScore(string item)
         {
-            switch (item)
+            Dictionary<string , int> AllSameItemScore = new Dictionary<string, int>()
             {
-                case "Wild":
-                    return 100;
-                case "Star":
-                    return 90;
-                case "Bell":
-                    return 80;
-                case "Shell":
-                    return 70;
-                case "Seven":
-                    return 60;
-                case "Cherry":
-                    return 50;
-                case "Bar":
-                    return 40;
-                case "King":
-                    return 30;
-                case "Queen":
-                    return 20;
-                case "Jack":
-                    return 10;
-            }
-            return 0;
+                { "Wild" , 100 },
+                { "Star" , 90 },
+                { "Bell" , 80 },
+                { "Shell" , 70 },
+                { "Seven" , 60 },
+                { "Cherry" , 50 },
+                { "Bar" , 40 },
+                { "King" , 30 },
+                { "Queen" , 20 },
+                { "Jack" , 10 }
+            };
+            return AllSameItemScore[item];
         }
 
         public static int GetTwoSameItemScore(string item , string diffItem)
         {
-            int tmpScore = 0;
-            switch (item)
+            Dictionary<string, int> TwoSameItemScore = new Dictionary<string, int>()
             {
-                case "Wild":
-                    tmpScore = 10;
-                    break;
-                case "Star":
-                    tmpScore = 9;
-                    break;
-                case "Bell":
-                    tmpScore = 8;
-                    break;
-                case "Shell":
-                    tmpScore = 7;
-                    break;
-                case "Seven":
-                    tmpScore = 6;
-                    break;
-                case "Cherry":
-                    tmpScore = 5;
-                    break;
-                case "Bar":
-                    tmpScore = 4;
-                    break;
-                case "King":
-                    tmpScore = 3;
-                    break;
-                case "Queen":
-                    tmpScore = 2;
-                    break;
-                case "Jack":
-                    tmpScore = 1;
-                    break;
-            }
-            if (diffItem == "Wild")
-                tmpScore *= 2;
-            return tmpScore;
+                { "Wild" , 10 },
+                { "Star" , 9 },
+                { "Bell" , 8 },
+                { "Shell" , 7 },
+                { "Seven" , 6 },
+                { "Cherry" , 5 },
+                { "Bar" , 4 },
+                { "King" , 3 },
+                { "Queen" , 2 },
+                { "Jack" , 1 }
+            };
+            return diffItem == "Wild" ? TwoSameItemScore[item] * 2 : TwoSameItemScore[item];
         }
     }
 }
