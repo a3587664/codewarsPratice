@@ -39,19 +39,38 @@ namespace codewars_Pratice
             Assert.AreEqual(90, Slot.CalculateScore(reels, spins));
         }
 
+        [Test]
+        public void Two_Wild_One_Diff()
+        {
+            int[] spins = { 0, 0, 1 };
+            Assert.AreEqual(10, Slot.CalculateScore(reels, spins));
+        }
+
         public class Slot
         {
             public static int CalculateScore(List<string[]> reels, int[] spins)
             {
-                if (IsAllSame(reels, spins))
+                if (IsAllSameItems(reels, spins))
                 {
                     string sameItem = reels[0][spins[0]];
                     return GetAllSameItemScore(sameItem);
                 }
+                if (IsTwoSameItems(reels,spins))
+                {
+                    string sameItem = reels[0][spins[0]] == reels[1][spins[1]]
+                        ? reels[0][spins[0]]
+                        : reels[2][spins[2]];
+                    return GetTwoSameItemScore(sameItem);
+                }
                 return 0;
             }
 
-            private static bool IsAllSame(List<string[]> reels, int[] spins)
+            private static bool IsTwoSameItems(List<string[]> reels, int[] spins)
+            {
+                return reels[0][spins[0]] == reels[1][spins[1]] || reels[0][spins[0]] == reels[2][spins[2]];
+            }
+
+            private static bool IsAllSameItems(List<string[]> reels, int[] spins)
             {
                 return reels[0][spins[0]] == reels[1][spins[1]] && reels[0][spins[0]] == reels[2][spins[2]];
             }
@@ -80,6 +99,34 @@ namespace codewars_Pratice
                         return 20;
                     case "Jack":
                         return 10;
+                }
+                return 0;
+            }
+
+            private static int GetTwoSameItemScore(string item)
+            {
+                switch (item)
+                {
+                    case "Wild":
+                        return 10;
+                    case "Star":
+                        return 9;
+                    case "Bell":
+                        return 8;
+                    case "Shell":
+                        return 7;
+                    case "Seven":
+                        return 6;
+                    case "Cherry":
+                        return 5;
+                    case "Bar":
+                        return 4;
+                    case "King":
+                        return 3;
+                    case "Queen":
+                        return 2;
+                    case "Jack":
+                        return 1;
                 }
                 return 0;
             }
