@@ -10,6 +10,19 @@ namespace codewars_Pratice
     public class Fruit_Machine
     {
         private List<string[]> _reels = new List<string[]>();
+        private static Dictionary<string, int> BasicItemScore = new Dictionary<string, int>()
+        {
+            { "Wild" , 10 },
+            { "Star" , 9 },
+            { "Bell" , 8 },
+            { "Shell" , 7 },
+            { "Seven" , 6 },
+            { "Cherry" , 5 },
+            { "Bar" , 4 },
+            { "King" , 3 },
+            { "Queen" , 2 },
+            { "Jack" , 1 }
+        };
 
         [SetUp]
         public void Set()
@@ -69,19 +82,24 @@ namespace codewars_Pratice
             public static int CalculateScore(List<string[]> reels, int[] spins)
             {
                 string sameItem = Item.GetSameItem(reels, spins);
+                string diffItem = Item.GetDiffItem(reels, spins);
+
                 if (sameItem == null)
                 {
                     return 0;
                 }
-                if (Item.IsAllSameItems(reels, spins))
+                
+                if (diffItem == "Wild")
                 {
-                    return Score.GetAllSameItemScore(sameItem);
+                    return BasicItemScore[sameItem] * 2;
                 }
-                else
+
+                if (diffItem == null)
                 {
-                    string diffItem = Item.GetDiffItem(reels,spins);
-                    return Score.GetTwoSameItemScore(sameItem,diffItem);
+                    return BasicItemScore[sameItem] * 10;
                 }
+
+                return BasicItemScore[sameItem];
             }
         }
     }
@@ -111,6 +129,10 @@ namespace codewars_Pratice
             var secondItem = reels[1][spins[1]];
             var thirdItem = reels[2][spins[2]];
 
+            if (firstItem == secondItem && firstItem == thirdItem)
+            {
+                return null;
+            }
             if (firstItem == secondItem)
             {
                 return thirdItem;
@@ -119,52 +141,7 @@ namespace codewars_Pratice
             {
                 return secondItem;
             }
-            return firstItem;
-        }
-
-        public static bool IsAllSameItems(List<string[]> reels, int[] spins)
-        {
-            return reels[0][spins[0]] == reels[1][spins[1]] && 
-                   reels[0][spins[0]] == reels[2][spins[2]];
-        }
-    }
-
-    internal class Score
-    {
-        public static int GetAllSameItemScore(string item)
-        {
-            Dictionary<string , int> AllSameItemScore = new Dictionary<string, int>()
-            {
-                { "Wild" , 100 },
-                { "Star" , 90 },
-                { "Bell" , 80 },
-                { "Shell" , 70 },
-                { "Seven" , 60 },
-                { "Cherry" , 50 },
-                { "Bar" , 40 },
-                { "King" , 30 },
-                { "Queen" , 20 },
-                { "Jack" , 10 }
-            };
-            return AllSameItemScore[item];
-        }
-
-        public static int GetTwoSameItemScore(string item , string diffItem)
-        {
-            Dictionary<string, int> TwoSameItemScore = new Dictionary<string, int>()
-            {
-                { "Wild" , 10 },
-                { "Star" , 9 },
-                { "Bell" , 8 },
-                { "Shell" , 7 },
-                { "Seven" , 6 },
-                { "Cherry" , 5 },
-                { "Bar" , 4 },
-                { "King" , 3 },
-                { "Queen" , 2 },
-                { "Jack" , 1 }
-            };
-            return diffItem == "Wild" ? TwoSameItemScore[item] * 2 : TwoSameItemScore[item];
+                return firstItem;
         }
     }
 }
