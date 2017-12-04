@@ -32,13 +32,6 @@ namespace codewars_Pratice
         }
 
         [Test]
-        public void Three_Wild()
-        {
-            int[] spins = { 0, 0, 0 };
-            Assert.AreEqual(100, Slot.CalculateScore(_reels, spins));
-        }
-
-        [Test]
         public void Three_Diff()
         {
             int[] spins = { 0, 1, 2 };
@@ -50,6 +43,8 @@ namespace codewars_Pratice
         {
             int[] spins = { 1, 1, 1 };
             Assert.AreEqual(90, Slot.CalculateScore(_reels, spins));
+            int[] spins2 = { 0, 0, 0 };
+            Assert.AreEqual(100, Slot.CalculateScore(_reels, spins2));
         }
 
         [Test]
@@ -66,8 +61,6 @@ namespace codewars_Pratice
             Assert.AreEqual(9, Slot.CalculateScore(_reels, spins));
             int[] spins2 = { 5, 1, 5 };
             Assert.AreEqual(5, Slot.CalculateScore(_reels, spins2));
-            int[] spins3 = { 3, 7, 3 };
-            Assert.AreEqual(7, Slot.CalculateScore(_reels, spins3));
         }
 
         [Test]
