@@ -52,8 +52,8 @@ namespace codewars_Pratice
         [Test]
         public void Two_SameItems_One_Diff()
         {
-            int[] spins = { 3, 1, 1 };
-            Assert.AreEqual(9, Slot.CalculateScore(_reels, spins));
+            int[] spins = { 0, 1, 1 };
+            Assert.AreEqual(18, Slot.CalculateScore(_reels, spins));
             int[] spins2 = { 5, 1, 5 };
             Assert.AreEqual(5, Slot.CalculateScore(_reels, spins2));
         }
