@@ -36,6 +36,8 @@ namespace codewars_Pratice
         {
             int[] spins = { 0, 1, 2 };
             Assert.AreEqual(0, Slot.CalculateScore(_reels, spins));
+            int[] spins2 = { 3, 5, 7 };
+            Assert.AreEqual(0, Slot.CalculateScore(_reels, spins2));
         }
 
         [Test]
@@ -48,26 +50,12 @@ namespace codewars_Pratice
         }
 
         [Test]
-        public void Two_Wild_One_Diff()
-        {
-            int[] spins = { 0, 0, 1 };
-            Assert.AreEqual(10, Slot.CalculateScore(_reels, spins));
-        }
-
-        [Test]
         public void Two_SameItems_One_Diff()
         {
             int[] spins = { 3, 1, 1 };
             Assert.AreEqual(9, Slot.CalculateScore(_reels, spins));
             int[] spins2 = { 5, 1, 5 };
             Assert.AreEqual(5, Slot.CalculateScore(_reels, spins2));
-        }
-
-        [Test]
-        public void Two_Wild_One_Wild()
-        {
-            int[] spins = { 2, 2, 0 };
-            Assert.AreEqual(16, Slot.CalculateScore(_reels, spins));
         }
 
         public class Slot
