@@ -9,8 +9,8 @@ namespace codewars_Pratice
     [TestFixture]
     public class Fruit_Machine
     {
-        private List<string[]> _reels = new List<string[]>();
-        private static Dictionary<string, int> BasicItemScore = new Dictionary<string, int>()
+        private static List<string[]> _reels = new List<string[]>();
+        private static Dictionary<string, int> ItemsScore = new Dictionary<string, int>()
         {
             { "Wild" , 10 },
             { "Star" , 9 },
@@ -35,94 +35,93 @@ namespace codewars_Pratice
         public void Three_Diff()
         {
             int[] spins = { 0, 1, 2 };
-            Assert.AreEqual(0, Slot.CalculateScore(_reels, spins));
+            Assert.AreEqual(0, Slot.CalculateScore(spins));
             int[] spins2 = { 3, 5, 7 };
-            Assert.AreEqual(0, Slot.CalculateScore(_reels, spins2));
+            Assert.AreEqual(0, Slot.CalculateScore(spins2));
         }
 
         [Test]
         public void Three_SameItems()
         {
             int[] spins = { 1, 1, 1 };
-            Assert.AreEqual(90, Slot.CalculateScore(_reels, spins));
+            Assert.AreEqual(90, Slot.CalculateScore(spins));
             int[] spins2 = { 0, 0, 0 };
-            Assert.AreEqual(100, Slot.CalculateScore(_reels, spins2));
+            Assert.AreEqual(100, Slot.CalculateScore(spins2));
         }
 
         [Test]
         public void Two_SameItems_One_Diff()
         {
             int[] spins = { 0, 1, 1 };
-            Assert.AreEqual(18, Slot.CalculateScore(_reels, spins));
+            Assert.AreEqual(18, Slot.CalculateScore(spins));
             int[] spins2 = { 5, 1, 5 };
-            Assert.AreEqual(5, Slot.CalculateScore(_reels, spins2));
+            Assert.AreEqual(5, Slot.CalculateScore(spins2));
         }
 
         public class Slot
         {
-            public static int CalculateScore(List<string[]> reels, int[] spins)
+            public static int CalculateScore(int[] spins)
             {
-                string sameItem = Item.GetSameItem(reels, spins);
-                string diffItem = Item.GetDiffItem(reels, spins);
+                string sameSpinsItem = GetSameItem(spins);
+                string onlyOneItem = GetOnlyOneItem(spins);
 
-                if (sameItem == null)
+                if (sameSpinsItem == null)
                 {
                     return 0;
                 }
-                
-                if (diffItem == "Wild")
+
+                if (onlyOneItem == null)
                 {
-                    return BasicItemScore[sameItem] * 2;
+                    var allSameItemScore = ItemsScore[sameSpinsItem] * 10;
+                    return allSameItemScore;
                 }
 
-                if (diffItem == null)
+                if (onlyOneItem == "Wild")
                 {
-                    return BasicItemScore[sameItem] * 10;
+                    var twoSameItemScore = ItemsScore[sameSpinsItem] * 2;
+                    return twoSameItemScore;
                 }
 
-                return BasicItemScore[sameItem];
+                return ItemsScore[sameSpinsItem];
             }
-        }
-    }
 
-    internal class Item
-    {
-        public static string GetSameItem(List<string[]> reels, int[] spins)
-        {
-            var firstItem = reels[0][spins[0]];
-            var secondItem = reels[1][spins[1]];
-            var thirdItem = reels[2][spins[2]];
-
-            if (firstItem == secondItem || firstItem == thirdItem)
+            public static string GetSameItem(int[] spins)
             {
-                return firstItem;
-            }
-            if (secondItem == thirdItem)
-            {
-                return secondItem;
-            }
-            return null;
-        }
+                var firstItem = _reels[0][spins[0]];
+                var secondItem = _reels[1][spins[1]];
+                var thirdItem = _reels[2][spins[2]];
 
-        public static string GetDiffItem(List<string[]> reels, int[] spins)
-        {
-            var firstItem = reels[0][spins[0]];
-            var secondItem = reels[1][spins[1]];
-            var thirdItem = reels[2][spins[2]];
-
-            if (firstItem == secondItem && firstItem == thirdItem)
-            {
+                if (firstItem == secondItem || firstItem == thirdItem)
+                {
+                    return firstItem;
+                }
+                if (secondItem == thirdItem)
+                {
+                    return secondItem;
+                }
                 return null;
             }
-            if (firstItem == secondItem)
+
+            public static string GetOnlyOneItem(int[] spins)
             {
-                return thirdItem;
-            }
-            if (firstItem == thirdItem)
-            {
-                return secondItem;
-            }
+                var firstItem = _reels[0][spins[0]];
+                var secondItem = _reels[1][spins[1]];
+                var thirdItem = _reels[2][spins[2]];
+
+                if (firstItem == secondItem && firstItem == thirdItem)
+                {
+                    return null;
+                }
+                if (firstItem == secondItem)
+                {
+                    return thirdItem;
+                }
+                if (firstItem == thirdItem)
+                {
+                    return secondItem;
+                }
                 return firstItem;
+            }
         }
     }
 }
