@@ -9,7 +9,7 @@ using NUnit.Framework.Internal;
 
 namespace codewars_Pratice
 {
-    [TestFixture]
+    //[TestFixture]
     public class BingoCardTests
     {
         [Test]
