@@ -35,18 +35,22 @@ namespace codewars_Pratice
 
         private string DecodeMorse(string message)
         {
-            var encode = message.Trim().TrimEnd().Split(' ').Aggregate(string.Empty,(x,y) => x + (y !="" ?  MorseCodeDecodeForm[y] : ""));
-            var a = "";
+            var encode = message.Trim()
+                                .TrimEnd()
+                                .Split(' ')
+                                .Aggregate(string.Empty,(x,y) => x + (y == "" ?  " " : MorseCodeDecodeForm[y]))
+                                .Replace("  "," ");
+            //var encode = "";
             //for (int i = 0; i < encode.Length; i++)
             //{
             //    if (encode[i] == "")
             //    {
-            //        a += " ";
+            //        encode += " ";
             //        continue;
             //    }
-            //    a += MorseCodeDecodeForm[encode[i]];
+            //    encode += MorseCodeDecodeForm[encode[i]];
             //}
-            return a.Replace("  ", " ");
+            return encode;
         }
 
         static Dictionary<string, string> MorseCodeDecodeForm = new Dictionary<string, string>()
