@@ -10,9 +10,10 @@ namespace codewars_Pratice
     public class Morse_Test
     {
         [Test]
-        public void OneWord()
+        public void OneWords()
         {
             Assert.AreEqual("ABC", DecodeMorse(".- -... -.-."));
+            Assert.AreEqual("XYZ", DecodeMorse("-..- -.-- --.."));
         }
 
         [Test]
@@ -22,15 +23,27 @@ namespace codewars_Pratice
         }
 
         [Test]
+        public void MoreSpaceTest()
+        {
+            Assert.AreEqual("E E", DecodeMorse("   .   ."));
+        }
+
+        [Test]
         public void KataTest()
         {
             Assert.AreEqual("HEY JUDE", DecodeMorse(".... . -.--   .--- ..- -.. ."));
         }
 
         [Test]
-        public void MoreSpaceTest()
+        public void SOS()
         {
-            Assert.AreEqual("E E", DecodeMorse("   .   ."));
+            Assert.AreEqual("SOS", DecodeMorse("...---..."));
+        }
+
+        [Test]
+        public void SOSandSpecial()
+        {
+            Assert.AreEqual("SOS!.", DecodeMorse("...---... -.-.-- .-.-.-"));
         }
 
         private string DecodeMorse(string message)
