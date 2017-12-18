@@ -83,35 +83,38 @@ namespace codewars_Pratice
 
         public class BingoCard
         {
+            private static List<string> card = new List<string>();
 
             public static string[] GetCard()
             {
-                var card = new List<string>();
-                card.AddRange(SetCard(bingo:"B", count: 5, startNum: 1, endNum: 16));
-                card.AddRange(SetCard(bingo:"I", count: 5, startNum: 16, endNum: 31));
-                card.AddRange(SetCard(bingo:"N", count: 4, startNum: 31, endNum: 46));
-                card.AddRange(SetCard(bingo:"G", count: 5, startNum: 46, endNum: 61));
-                card.AddRange(SetCard(bingo:"O", count: 5, startNum: 61, endNum: 76));
+                card = new List<string>();
+                GenarateCard(bingoCoulmn:"B", columnCount: 5, startNum: 1, endNum: 16);
+                GenarateCard(bingoCoulmn:"I", columnCount: 5, startNum: 16, endNum: 31);
+                GenarateCard(bingoCoulmn:"N", columnCount: 4, startNum: 31, endNum: 46);
+                GenarateCard(bingoCoulmn:"G", columnCount: 5, startNum: 46, endNum: 61);
+                GenarateCard(bingoCoulmn:"O", columnCount: 5, startNum: 61, endNum: 76);
                 return card.ToArray();
             }
 
-            private static List<string> SetCard(string bingo, int count, int startNum, int endNum)
+            private static void GenarateCard(string bingoCoulmn, int columnCount, int startNum, int endNum)
             {
-                Random gerenateRandomNum = new Random();
-                var card = new List<string>();
+                var random = new Random();
+                var count = columnCount + card.Count;
                 while (card.Count < count)
                 {
-                    int rngNum = gerenateRandomNum.Next(startNum, endNum);
-                    var IsUniqueNumInCard = !card.Where(x => x == bingo + rngNum.ToString()).Any();
+                    var rngNum = random.Next(startNum, endNum);
 
-                    if (IsUniqueNumInCard)
+                    if (IsUniqueNumInCard(bingoCoulmn, rngNum))
                     {
-                        card.Add(bingo + rngNum);
+                        card.Add(bingoCoulmn + rngNum);
                     }
                 }
-                return card;
             }
 
+            private static bool IsUniqueNumInCard(string bingoCoulmn, int rngNum)
+            {
+                return card.All(x => x != bingoCoulmn + rngNum.ToString());
+            }
         }
     }
 }
