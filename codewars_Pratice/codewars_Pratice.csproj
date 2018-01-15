@@ -81,6 +81,7 @@
     <Compile Include="Valid_Braces.cs" />
     <Compile Include="WeightSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Worda10n.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
