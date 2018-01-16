@@ -23,7 +23,7 @@ namespace codewars_Pratice
     {
         public static string Abbreviate(string input)
         {
-            return string.Join("", Regex.Split(input, @"([^a-zA-Z])").Select(WordAbbreviate));
+            return string.Join("", Regex.Split(input, @"([^a-zA-Z])").Select(word => word.Length < 4 ? word : word.First() + (word.Length - 2).ToString() + word.Last()));
         }
 
         private static string WordAbbreviate(string word)

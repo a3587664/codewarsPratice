@@ -58,6 +58,7 @@
     <Compile Include="Bowling.cs" />
     <Compile Include="Fruit_Machine.cs" />
     <Compile Include="Morse.cs" />
+    <Compile Include="Mumbling.cs" />
     <Compile Include="SMS_Lottery.cs" />
     <Compile Include="Stop_gninnipS_My_sdrow.cs" />
     <Compile Include="GoodVsEvil.cs" />
