@@ -48,15 +48,20 @@ namespace codewars_Pratice
 
         private string DecodeMorse(string message)
         {
+            var test = message.Trim()
+                .Split(new[] {"   "," "}, StringSplitOptions.RemoveEmptyEntries)
+                .Aggregate(string.Empty, (x, y) => x + MorseCodeDecodeForm[y]).ToList();
+            string.Join("", test);
+
             return message.Trim()
-                          .TrimEnd()
-                          .Split(' ')
-                          .Aggregate(string.Empty,(x,y) => x + (y == "" ?  " " : MorseCodeDecodeForm[y]))
+                          .Split()
+                          .Aggregate(string.Empty,(x,y) => x + MorseCodeDecodeForm[y])
                           .Replace("  "," ");
         }
 
         static Dictionary<string, string> MorseCodeDecodeForm = new Dictionary<string, string>()
         {
+            {""," " },
             { ".-","A"},
             { "-...","B"},
             { "-.-.","C"},

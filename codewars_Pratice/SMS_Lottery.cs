@@ -62,7 +62,7 @@ namespace codewars_Pratice
             try
             {
                 var numbers = ConverToNum(text);
-                if (IsInNumRange(maxNum, numbers) && IsExpectedCount(count,numbers))
+                if (IsValidInput(count, maxNum, numbers))
                 {
                     numbers.Sort();
                     return numbers.ToArray();
@@ -75,14 +75,9 @@ namespace codewars_Pratice
             }
         }
 
-        private static bool IsExpectedCount(int count, List<int> numbers)
+        private static bool IsValidInput(int count, int maxNum, List<int> numbers)
         {
-            return numbers.Distinct().Count() == count && numbers.Count == count;
-        }
-
-        private static bool IsInNumRange(int maxNum, List<int> numbers)
-        {
-            return !numbers.Any(num => num > maxNum || num <= 0);
+            return !numbers.Any(num => num > maxNum || num <= 0) && (numbers.Distinct().Count() == count && numbers.Count == count);
         }
 
         private static List<int> ConverToNum(string text)
